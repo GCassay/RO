@@ -9,9 +9,9 @@ var gulp = require('gulp'),
 
 gulp.task('connect', function() {
   connect.server({
-    root: 'src',
+    root: 'public',
     livereload: true,
-    port: 8010
+    port: 8020
   });
 });
 
@@ -45,21 +45,20 @@ gulp.task('build:scripts', ['clean:js'], function () {
 });
 
 gulp.task('clean:html', function() {
-  clean(['public/**/*.html']);
+  return clean(['public/**/*.html']);
 });
 
 gulp.task('clean:css', function() {
-  clean(['public/css/*.css']);
+  return clean(['public/css/*.css']);
 });
 
 gulp.task('clean:js', function() {
-  clean(['public/app/*.js']);
+  return clean(['public/app/*.js']);
 });
 
 gulp.task('watch', function () {
-  //gulp.watch(['src/**/*.*'], ['build:html'], ['build:sass'], ['build:scripts']);
   gulp.watch(['./src/*.*','./src/app/templates/*.*'], ['build:html']);
-  gulp.watch(['./src/sass/*.scss'], ['build:sass']);
+  gulp.watch(['./src/sass/*.*'], ['build:sass']);
   gulp.watch(['./src/app/*.*','./src/app/components/*.*'], ['build:scripts']);
 });
 
