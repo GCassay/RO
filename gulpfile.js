@@ -1,14 +1,65 @@
-var gulp = require('gulp');
-var server = require('gulp-server-livereload');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
+    mini = require('gulp-uglify'),
+    clean = require('del'),
+    babel = require('gulp-babel'),
+    connect = require('gulp-connect');
 
-gulp.task('ws', function() {
-  gulp.src('node_modules')
-    .pipe(server({
-      livereload: true,
-      directoryListing: true,
-      port: 8010,
-      livereloadPort: 8010,
-      defaultFile: 'index.html',
-      open: true
-    }));
+gulp.task('connect', function() {
+  connect.server({
+    root: 'src',
+    livereload: true,
+    port: 8010
+  });
 });
+
+gulp.task('build:html', ['clean:html'], function () {
+  gulp.src('./src/*.*')
+    .pipe(gulp.dest('./public/'));
+
+  gulp.src('./src/app/templates/*.html')
+    .pipe(gulp.dest('./public/app/templates/'))
+    .pipe(connect.reload());
+});
+
+gulp.task('build:sass', ['clean:css'], function () {
+  gulp.src('./src/sass/*.*')
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
+    .pipe(concat('main.min.css'))
+    .pipe(gulp.dest('./public/css/'))
+    .pipe(connect.reload());
+});
+
+gulp.task('build:scripts', ['clean:js'], function () {
+  gulp.src('./src/app/**/*.*')
+    .pipe(concat('app.js'))
+    .pipe(babel({
+        "presets": ["env"]
+      }))
+    .pipe(gulp.dest('./public/app/'))
+    .pipe(connect.reload());
+});
+
+gulp.task('clean:html', function() {
+  clean(['public/**/*.html']);
+});
+
+gulp.task('clean:css', function() {
+  clean(['public/css/*.css']);
+});
+
+gulp.task('clean:js', function() {
+  clean(['public/app/*.js']);
+});
+
+gulp.task('watch', function () {
+  gulp.watch(['./src/**/*.html'], ['build:html']);
+  gulp.watch(['./src/sass/*.scss'], ['build:sass']);
+  gulp.watch(['./src/app/**/*.js'], ['build:scripts']);
+});
+
+gulp.task('default', ['connect', 'build:html', 'build:sass', 'build:scripts', 'watch']);
