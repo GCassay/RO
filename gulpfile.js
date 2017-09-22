@@ -11,12 +11,12 @@ gulp.task('connect', function() {
   connect.server({
     root: 'public',
     livereload: true,
-    port: 8020
+    port: 8010
   });
 });
 
 gulp.task('build:html', ['clean:html'], function () {
-  gulp.src('./src/*.*')
+  return gulp.src('./src/*.*')
     .pipe(gulp.dest('./public/'));
 
   gulp.src('./src/app/templates/*.html')
@@ -25,7 +25,7 @@ gulp.task('build:html', ['clean:html'], function () {
 });
 
 gulp.task('build:sass', ['clean:css'], function () {
-  gulp.src('./src/sass/*.*')
+  return gulp.src('./src/sass/*.*')
     .pipe(sass({
       outputStyle: 'compressed'
     }))
@@ -35,7 +35,7 @@ gulp.task('build:sass', ['clean:css'], function () {
 });
 
 gulp.task('build:scripts', ['clean:js'], function () {
-  gulp.src('./src/app/**/*.js')
+  return gulp.src('./src/app/**/*.js')
     .pipe(concat('app.js'))
     .pipe(babel({
         "presets": ["env"]
