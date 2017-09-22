@@ -1,8 +1,6 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
-    rename = require('gulp-rename'),
-    mini = require('gulp-uglify'),
     clean = require('del'),
     babel = require('gulp-babel'),
     connect = require('gulp-connect');
