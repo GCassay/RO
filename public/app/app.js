@@ -18,3 +18,13 @@ function itemListController($scope) {
   var a = algo * 2;
   return vm;
 }
+
+angular.module('app').component('sysClassesComponent');
+
+// sysPet.js
+
+// sysPremium.js
+
+angular.module('app');
+
+// world.js

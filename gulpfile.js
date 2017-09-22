@@ -35,7 +35,7 @@ gulp.task('build:sass', ['clean:css'], function () {
 });
 
 gulp.task('build:scripts', ['clean:js'], function () {
-  gulp.src('./src/app/**/*.*')
+  gulp.src('./src/app/**/*.js')
     .pipe(concat('app.js'))
     .pipe(babel({
         "presets": ["env"]
@@ -57,9 +57,10 @@ gulp.task('clean:js', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/**/*.html'], ['build:html']);
+  //gulp.watch(['src/**/*.*'], ['build:html'], ['build:sass'], ['build:scripts']);
+  gulp.watch(['./src/*.*','./src/app/templates/*.*'], ['build:html']);
   gulp.watch(['./src/sass/*.scss'], ['build:sass']);
-  gulp.watch(['./src/app/**/*.js'], ['build:scripts']);
+  gulp.watch(['./src/app/*.*','./src/app/components/*.*'], ['build:scripts']);
 });
 
 gulp.task('default', ['connect', 'build:html', 'build:sass', 'build:scripts', 'watch']);
