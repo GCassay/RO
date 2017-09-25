@@ -17,7 +17,7 @@
     var goItems = {
       name: 'items',
       url: '/items',
-      template: '<db-item-list item-list="{{$ctrl.items}}"></db-item-list>'
+      template: '<db-item-list item-list="{{$ctrl.items}}" list-view="{{true}}"></db-item-list>'
     };
 
     $stateProvider.state(goWorld);

@@ -1,12 +1,12 @@
-<div class="" ng-init="listView = false">
+<div class="">
   <div class="">
-    <md-button ng-click="listView = !listView">List</md-button>
-    <md-button ng-click="listView = !listView">Thumbnail</md-button>
-    <md-content style="" ng-class="listView ? 'test' : null">
-      <div class="" layout="row" ng-repeat="item in $ctrl.items" ng-class-odd="'list-odd'" ng-class-even="'list-even'" flex="auto">
+    <md-button ng-click="$ctrl.listView = !$ctrl.listView">List</md-button>
+    <md-button ng-click="$ctrl.listView = !$ctrl.listView">Thumbnail</md-button>
+    <md-content style="" ng-class="$ctrl.listView ? 'test' : null">
+      <div class="" layout="{{ $ctrl.listView ? 'row' : 'column'}}" layout-wrap ng-repeat="item in $ctrl.items" ng-class-odd="'list-odd'" ng-class-even="'list-even'" flex="{{ $ctrl.listView ? '33' : 'auto'}}">
         <div class="" flex>{{::item.name}}</div>
-        <div class="" flex>{{::item.type}}</div>
-        <div class="" hide-xs flex>{{::item.vprice}}z</div>
+        <div class="" flex ng-if="$ctrl.listView">{{::item.type}}</div>
+        <div class="" hide-xs flex ng-if="!$ctrl.listView">{{::item.vprice}}z</div>
         <div class="" hide-xs flex>{{::item.bprice}}z</div>
       </div>
     </md-content>
