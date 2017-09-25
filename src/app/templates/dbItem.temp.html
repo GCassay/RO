@@ -1,0 +1,14 @@
+<div class="" ng-init="listView = false">
+  <div class="">
+    <md-button ng-click="listView = !listView">List</md-button>
+    <md-button ng-click="listView = !listView">Thumbnail</md-button>
+    <md-content style="" ng-class="listView ? 'test' : null">
+      <div class="" layout="row" ng-repeat="item in $ctrl.items" ng-class-odd="'list-odd'" ng-class-even="'list-even'" flex="auto">
+        <div class="" flex>{{::item.name}}</div>
+        <div class="" flex>{{::item.type}}</div>
+        <div class="" hide-xs flex>{{::item.vprice}}z</div>
+        <div class="" hide-xs flex>{{::item.bprice}}z</div>
+      </div>
+    </md-content>
+  </div>
+</div>

@@ -14,7 +14,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('build:html', ['clean:html'], function () {
-  return gulp.src('./src/*.*')
+  gulp.src('./src/*.*')
     .pipe(gulp.dest('./public/'));
 
   gulp.src('./src/app/templates/*.html')
