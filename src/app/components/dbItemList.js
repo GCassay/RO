@@ -79,8 +79,15 @@ function itemController() {
     }
   ];
   var vm = this;
+  vm.activeView = null;
   vm.listView = true;
   vm.a = "aaaaa";
   vm.items = itemList;
   console.log(vm.items);
+  vm.toggleView = toggleView;
+
+  function toggleView(view){
+    vm.listView = view;
+    vm.activeView = vm.listView ? "./app/templates/world.temp.html" : "";
+  }
 }

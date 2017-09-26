@@ -1,9 +1,9 @@
 <div class="">
   <div class="">
-    <md-button ng-click="$ctrl.listView = !$ctrl.listView">List</md-button>
-    <md-button ng-click="$ctrl.listView = !$ctrl.listView">Thumbnail</md-button>
-    <md-content style="" ng-class="$ctrl.listView ? 'test' : null">
-      <div class="" layout="{{ $ctrl.listView ? 'row' : 'column'}}" layout-wrap ng-repeat="item in $ctrl.items" ng-class-odd="'list-odd'" ng-class-even="'list-even'" flex="{{ $ctrl.listView ? '33' : 'auto'}}">
+    <md-button ng-click="$ctrl.toggleView(true)">List</md-button>
+    <md-button ng-click="$ctrl.toggleView(false)">Thumbnail</md-button>
+    <md-content style="" ng-class="$ctrl.listView ? 'test' : null" layout="{{ $ctrl.listView ? 'row' : 'column'}}" layout-wrap ng-class="{{ $ctrl.listView ? listView : gridView }}">
+      <div class="" layout="{{ $ctrl.listView ? 'row' : 'column'}}" layout-wrap ng-repeat="item in $ctrl.items" ng-class-odd="'list-odd'" ng-class-even="'list-even'">
         <div class="" flex>{{::item.name}}</div>
         <div class="" flex ng-if="$ctrl.listView">{{::item.type}}</div>
         <div class="" hide-xs flex ng-if="!$ctrl.listView">{{::item.vprice}}z</div>
@@ -12,3 +12,4 @@
     </md-content>
   </div>
 </div>
+<ng-include src="$ctrl.activeView"></ng-include>
