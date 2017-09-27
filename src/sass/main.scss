@@ -5,11 +5,18 @@ html, body {
   color: #ddd;
 }
 
+.container {
+  border: 1px solid red;
+}
+
 .list-even {
   background-color: #fff;
+  border: 1px solid #d8eef7;
+  box-sizing: border-box;
 }
 .list-odd {
   background-color: #d8eef7;
+  box-sizing: border-box;
 }
 
 .test {

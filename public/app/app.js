@@ -31,7 +31,7 @@ angular.module('app').component('dbItemList', {
   controller: itemController
 });
 
-function itemController() {
+function itemController($mdDialog) {
 
   var itemList = [{
     id: 1,
@@ -101,11 +101,31 @@ function itemController() {
   vm.items = itemList;
   console.log(vm.items);
   vm.toggleView = toggleView;
+  vm.showPanel = showPanel;
 
   function toggleView(view) {
     vm.listView = view;
     vm.activeView = vm.listView ? "./app/templates/world.temp.html" : "";
   }
+
+  function showPanel(ev, items) {
+    $mdDialog.show({
+      controller: itemController,
+      bindToController: true,
+      templateUrl: 'app/templates/world.temp.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      disableParentScroll: true,
+      fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+    }).then(function (answer) {
+      vm.status = 'You said the information was "' + answer + '".';
+      console.log('algo' + items);
+    }, function () {
+      vm.status = 'You cancelled the dialog.';
+      console.log('algo' + items);
+    });
+  };
 }
 
 angular.module('app').component('siteContent', {});
