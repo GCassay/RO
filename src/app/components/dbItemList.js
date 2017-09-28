@@ -4,7 +4,7 @@ angular.module('app')
         controller: itemController
       });
 
-function itemController($mdDialog) {
+function itemController($mdDialog, $scope) {
 
   var itemList = [
     {
@@ -83,33 +83,52 @@ function itemController($mdDialog) {
   vm.listView = true;
   vm.a = "aaaaa";
   vm.items = itemList;
+  // $scope.items = vm.items;
   console.log(vm.items);
   vm.toggleView = toggleView;
   vm.showPanel = showPanel;
+  $scope.holi = "holi";
 
   function toggleView(view){
     vm.listView = view;
     vm.activeView = vm.listView ? "./app/templates/world.temp.html" : "";
   }
 
-  function showPanel(ev, items) {
+  function showPanel(ev) {
+
     $mdDialog.show({
-      controller: itemController,
-      bindToController: true,
+      controller: DialogController,
       templateUrl: 'app/templates/world.temp.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
+      preserveScope: true,
       disableParentScroll: true,
+      locals: {
+        items: vm.items,
+        holi: $scope.holi
+      },
       fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
     })
     .then(function(answer) {
       vm.status = 'You said the information was "' + answer + '".';
-      console.log('algo' + items);
+      console.log('algo' + vm.items);
+      console.log(vm.status);
     }, function() {
       vm.status = 'You cancelled the dialog.';
-      console.log('algo' + items);
+      console.log('algo' + vm.items);
+      console.log(vm.status);
     });
+
+    function DialogController($scope, $mdDialog, items, holi) {
+      var vm = this;
+      $scope.items = items;
+      $scope.holi = holi;
+      console.log("AAA "+vm.items);
+      vm.closeDialog = function() {
+        $mdDialog.hide();
+      }
+    }
   };
 
 }
