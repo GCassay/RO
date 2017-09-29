@@ -87,7 +87,7 @@ function itemController($mdDialog, $scope) {
   console.log(vm.items);
   vm.toggleView = toggleView;
   vm.showPanel = showPanel;
-  $scope.holi = "holi";
+  vm.holi = "holi";
 
   function toggleView(view){
     vm.listView = view;
@@ -104,9 +104,12 @@ function itemController($mdDialog, $scope) {
       clickOutsideToClose:true,
       preserveScope: true,
       disableParentScroll: true,
+      openFrom:('#dial'),
+      closeTo:('#dial'),
+      fullscreen: true,
       locals: {
         items: vm.items,
-        holi: $scope.holi
+        holi: vm.holi
       },
       fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
     })
@@ -121,13 +124,25 @@ function itemController($mdDialog, $scope) {
     });
 
     function DialogController($scope, $mdDialog, items, holi) {
-      var vm = this;
+
       $scope.items = items;
       $scope.holi = holi;
-      console.log("AAA "+vm.items);
-      vm.closeDialog = function() {
+
+      $scope.closeDialog = function() {
         $mdDialog.hide();
       }
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
     }
   };
 

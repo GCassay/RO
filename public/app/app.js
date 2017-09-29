@@ -1,5 +1,7 @@
 'use strict';
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 (function () {
   'use strict';
 
@@ -103,7 +105,7 @@ function itemController($mdDialog, $scope) {
   console.log(vm.items);
   vm.toggleView = toggleView;
   vm.showPanel = showPanel;
-  $scope.holi = "holi";
+  vm.holi = "holi";
 
   function toggleView(view) {
     vm.listView = view;
@@ -112,7 +114,7 @@ function itemController($mdDialog, $scope) {
 
   function showPanel(ev) {
 
-    $mdDialog.show({
+    $mdDialog.show(_defineProperty({
       controller: DialogController,
       templateUrl: 'app/templates/world.temp.html',
       parent: angular.element(document.body),
@@ -120,12 +122,14 @@ function itemController($mdDialog, $scope) {
       clickOutsideToClose: true,
       preserveScope: true,
       disableParentScroll: true,
+      openFrom: '#dial',
+      closeTo: '#dial',
+      fullscreen: true,
       locals: {
         items: vm.items,
-        holi: $scope.holi
-      },
-      fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
-    }).then(function (answer) {
+        holi: vm.holi
+      }
+    }, 'fullscreen', vm.customFullscreen)).then(function (answer) {
       vm.status = 'You said the information was "' + answer + '".';
       console.log('algo' + vm.items);
       console.log(vm.status);
@@ -136,12 +140,24 @@ function itemController($mdDialog, $scope) {
     });
 
     function DialogController($scope, $mdDialog, items, holi) {
-      var vm = this;
+
       $scope.items = items;
       $scope.holi = holi;
-      console.log("AAA " + vm.items);
-      vm.closeDialog = function () {
+
+      $scope.closeDialog = function () {
         $mdDialog.hide();
+      };
+
+      $scope.hide = function () {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function () {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
       };
     }
   };

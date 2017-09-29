@@ -23,5 +23,11 @@ html, body {
   color: #b0b0b0;
 }
 .modal {
-  // width: 500px;
+  width: 90%;
+  min-width: 200px;
+  background-color: #666;
+  color: #fff;
+}
+.modal md-dialog-content{
+  padding: 20px;
 }
