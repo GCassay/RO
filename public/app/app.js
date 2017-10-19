@@ -159,6 +159,8 @@ function itemController($mdDialog, $scope) {
       $scope.answer = function (answer) {
         $mdDialog.hide(answer);
       };
+
+      function sendEmail() {}
     }
   };
 }

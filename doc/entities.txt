@@ -1,0 +1,99 @@
+ITEMS
+- idItem (num) PK
+- name (string)
+- type (num)
+- sprice (num)
+- desc (string)
+- npc (bool)
+- mob (bool)
+- box (bool)
+- quest (bool)
+
+ITEMTYPES (consumible, hgtop, hgmid, hglow, hgtml, hgtm, hgml, back, garment, armor, shoes, gloves, sword1h, sword2h, staff, knife,  etc)
+- idType (num) PK
+- name (string)
+
+PROPERTIES
+- idProperty (num) PK
+- name (string)
+
+MOBS
+- idMob (num) PK
+- name (string)
+- level (num)
+- hp (num)
+- sp (num)
+- property (num)
+
+SKILLS
+- idSkill (num) PK
+- name (string)
+- maxlevel (num)
+- desc (string)
+- property (num)
+
+MOBSKILLS
+- idMobSkill (num) PK
+- mob (num)
+- skill (num)
+- level (num)
+
+MAPS
+- idMap (num) PK
+- name
+
+DROPMOB
+- idDropmob (num) PK
+- mob
+- item
+- rate
+
+DROPBOX
+- idDropbox (num) PK
+- item
+- drop
+- rate
+
+DROPNPC
+- idDropnpc (num) PK
+- item
+- npc
+- currency
+- price
+
+PETS
+- idPet (num) PK
+- name
+- mob
+
+QUESTS
+- idQuest (num) PK
+- name
+- type
+- npcInit
+- npcEnd
+- baseExp
+- jobExp
+
+NPCS
+- idNPC (num) PK
+- sprite
+- name
+- locationMap
+- locationCoords
+
+QUESTMOBREQ
+- idQuestMob (num) PK
+- mob
+- ammount
+
+QUESTITEMREQ
+- idQuestItem (num) PK
+- quest
+- item
+- ammount
+
+QUESTREWARDS
+- idQuestReward (num) PK
+- quest
+- item

@@ -12,21 +12,43 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="" flex>{{::items[2].name}}</div>
-      <div class="" flex>{{ ::items[2].vprice }} z</div>
-      <div class="" hide-xs flex></div>
-      <div class="" hide-xs flex></div>
+      <div class="">
+        <h1>{{items[1].name}}</h1>
+        <form class="" method="post" ng-submit="" ng-cloak>
+          <md-contact-chips
+            ng-model="ctrl.asyncContacts"
+            md-contacts="ctrl.delayedQuerySearch($query)"
+            md-contact-name="name"
+            md-contact-image="image"
+            md-contact-email="email"
+            md-require-match="true"
+            md-highlight-flags="i"
+            filter-selected="ctrl.filterSelected"
+            placeholder="Email To:">
+          </md-contact-chips>
+          <md-input-container>
+            <label>Subject</label>
+            <input type="text" ng-model="user.name">
+          </md-input-container>
+          <md-input-container>
+            <label>Message</label>
+            <textarea name="message" rows="3" cols="80" ng-model="user.message"></textarea>
+          </md-input-container>
+          <md-radio-group>
+            <md-radio-button ng-model="exp" ng-value="true" aria-label="">Reel link expires:</md-radio-button>
+            <md-datepicker ng-model="2000-01-01" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            <md-radio-button ng-model="" ng-value="false" aria-label="">Reel link never expires</md-radio-button>
+          </md-radio-group>
+        </form>
+      </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        More on Wikipedia
-      </md-button>
-      <span flex></span>
       <md-button ng-click="answer('Not today ninja')">
        CANCEL
       </md-button>
       <md-button ng-click="answer('Sent!')">
+        <md-icon class="material-icon">send</md-icon>
         SEND EMAIL
       </md-button>
     </md-dialog-actions>
