@@ -1,0 +1,31 @@
+HOME
+NOTICIAS
+	RO
+	Site
+	Event
+ITEMS
+	Equip
+	Weapon
+	Munic
+	Cosplay
+	Consumibles
+	Cards
+	Etc
+WORLD
+	Towns
+	Fields
+	Dungeon
+MOBS
+	Normal
+	Boss
+	Special
+GUIDES
+	Game Interface
+	Player Basics - Classes / Status / Achievements / Titles
+	Hair Color
+	Headgear Quests
+	Class Change
+	Access
+	Premium
+	Pet Catch
+	Photos
