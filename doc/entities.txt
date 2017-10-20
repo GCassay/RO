@@ -4,10 +4,11 @@ ITEMS
 - type (num)
 - sprice (num)
 - desc (string)
-- npc (bool)
-- mob (bool)
-- box (bool)
-- quest (bool)
+- itemNpc (bool)
+- itemMob (bool)
+- itemBox (bool)
+- itemQues (bool)
+- event
 
 ITEMTYPES (consumible, hgtop, hgmid, hglow, hgtml, hgtm, hgml, back, garment, armor, shoes, gloves, sword1h, sword2h, staff, knife,  etc)
 - idType (num) PK
@@ -24,6 +25,7 @@ MOBS
 - hp (num)
 - sp (num)
 - property (num)
+- event
 
 SKILLS
 - idSkill (num) PK
@@ -42,29 +44,35 @@ MAPS
 - idMap (num) PK
 - name
 
-DROPMOB
+ITEMMOB
 - idDropmob (num) PK
 - mob
 - item
 - rate
 
-DROPBOX
+ITEMBOX
 - idDropbox (num) PK
 - item
 - drop
 - rate
 
-DROPNPC
+ITEMNPC
 - idDropnpc (num) PK
 - item
 - npc
 - currency
 - price
 
+ITEMQUEST
+- idQuestReward (num) PK
+- quest
+- item
+
 PETS
 - idPet (num) PK
 - name
 - mob
+- event
 
 QUESTS
 - idQuest (num) PK
@@ -74,6 +82,7 @@ QUESTS
 - npcEnd
 - baseExp
 - jobExp
+- event
 
 NPCS
 - idNPC (num) PK
@@ -81,6 +90,7 @@ NPCS
 - name
 - locationMap
 - locationCoords
+- event
 
 QUESTMOBREQ
 - idQuestMob (num) PK
@@ -93,7 +103,8 @@ QUESTITEMREQ
 - item
 - ammount
 
-QUESTREWARDS
-- idQuestReward (num) PK
-- quest
-- item
+EVENTS
+- idEvent
+- nombre
+- dateInit
+- dateEnd
