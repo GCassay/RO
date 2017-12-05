@@ -1,110 +1,120 @@
 ITEMS
 - idItem (num) PK
-- name (string)
-- type (num)
+- name (text)
+- type (num) FK
 - sprice (num)
+- vprice (num)
 - desc (string)
-- itemNpc (bool)
+- itemShop (bool)
 - itemMob (bool)
 - itemBox (bool)
-- itemQues (bool)
-- event
+- itemQuest (bool)
+- event (num) FK
 
 ITEMTYPES (consumible, hgtop, hgmid, hglow, hgtml, hgtm, hgml, back, garment, armor, shoes, gloves, sword1h, sword2h, staff, knife,  etc)
 - idType (num) PK
-- name (string)
+- name (text)
 
 PROPERTIES
 - idProperty (num) PK
-- name (string)
+- name (text)
 
 MOBS
 - idMob (num) PK
-- name (string)
+- name (text)
 - level (num)
 - hp (num)
 - sp (num)
-- property (num)
-- event
+- property (num) FK
+- event (num)
 
 SKILLS
 - idSkill (num) PK
-- name (string)
+- name (text)
 - maxlevel (num)
-- desc (string)
-- property (num)
+- desc (text)
+- property (num) FK
 
 MOBSKILLS
 - idMobSkill (num) PK
-- mob (num)
-- skill (num)
+- mob (num) FK
+- skill (num) FK
 - level (num)
 
 MAPS
 - idMap (num) PK
-- name
+- name (text)
 
 ITEMMOB
 - idDropmob (num) PK
-- mob
-- item
-- rate
+- mob (num) FK
+- item (num) FK
+- rate (num)
 
 ITEMBOX
-- idDropbox (num) PK
-- item
-- drop
-- rate
+- idDropBox (num) PK
+- box (num) FK
+- item (num) FK
+- ammount (num)
+- rate (num)
 
-ITEMNPC
+ITEMSHOP
 - idDropnpc (num) PK
-- item
-- npc
-- currency
-- price
+- item (num) FK
+- npc (num) FK
+- currency (num) FK
 
-ITEMQUEST
-- idQuestReward (num) PK
-- quest
-- item
+CURRENCY
+- idCurrency (num)
+- name (text)
+- symbol (text)
 
 PETS
 - idPet (num) PK
-- name
-- mob
-- event
-
-QUESTS
-- idQuest (num) PK
-- name
-- type
-- npcInit
-- npcEnd
-- baseExp
-- jobExp
-- event
+- name (text)
+- mob (num) FK
+- tamingItem (num) FK
+- food (num) FK
+- event (num) FK
 
 NPCS
 - idNPC (num) PK
-- sprite
-- name
-- locationMap
-- locationCoords
-- event
+- sprite (num)
+- name (text)
+- locationMap (num) FK
+- locationX (num)
+- locationY (num)
+- event (num) FK
 
-QUESTMOBREQ
+QUESTS
+- idQuest (num) PK
+- name (text)
+- type (num) FK
+- npcInit (num) FK
+- npcEnd (num) FK
+- baseExp (num)
+- jobExp (num)
+- event (num) FK
+
+QUEST-REQ-MOB
 - idQuestMob (num) PK
-- mob
-- ammount
+- mob (num) FK
+- ammount (num)
 
-QUESTITEMREQ
+QUEST-REQ-ITEM
 - idQuestItem (num) PK
-- quest
-- item
-- ammount
+- quest (num) FK
+- item (num) FK
+- ammount (num)
+
+QUEST-REWARD
+- idQuestReward (num) PK
+- quest (num) FK
+- item (num) FK
+- ammount (num)
 
 EVENTS
-- idEvent
-- nombre
-- dateInit
-- dateEnd
+- idEvent (num)
+- nombre (text)
+- dateInit (num)
+- dateEnd (num)
